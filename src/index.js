@@ -32,14 +32,14 @@ rl.on("line", function (input) {
         case "1":
             addProduct();
             break;
-        // case "2":
-        // 	showList();
-        // 	break;
+        case "2":
+            showList();
+            break;
         case "3":
             exitApp();
             break;
         default:
-            console.log("Invalid input. Please try again.");
+            console.log("\u0412\u0432\u0435\u0434\u0435\u043D\u0430 \u043D\u0435\u0432\u0435\u0440\u043D\u0430\u044F \u043A\u043E\u043C\u0430\u043D\u0434\u0430: ".concat(input));
     }
 });
 //? создаю функцию addProduct
@@ -62,7 +62,7 @@ function addProduct() {
                     };
                     productAdded = true;
                     products.push(product);
-                    console.log(product);
+                    // console.log(product);
                     if (productAdded) {
                         productAdded = false;
                         menuDisplay();
@@ -85,7 +85,7 @@ function addProduct() {
                     };
                     productAdded = true;
                     products.push(product);
-                    console.log(product);
+                    // console.log(product);
                     if (productAdded) {
                         productAdded = false;
                         menuDisplay();
@@ -99,17 +99,20 @@ function addProduct() {
         }
     });
 }
-// define the showList function
-// function showList() {
-// 	console.log("Products in bucket:");
-// 	products.forEach((product: Product) => {
-// 		console.log(`Name: ${product.name} | Price: ${product.price}`);
-// 	});
-// 	console.log("1. Add product");
-// 	console.log("2. View products");
-// 	console.log("3. Exit");
-// }
-// define the exitApp function
+//? функция showList для отображеня списка
+function showList() {
+    console.log("Products in bucket:");
+    products.forEach(function (product) {
+        if (product.type == "ice cream") {
+            console.log("Name: ".concat(product === null || product === void 0 ? void 0 : product.info["name"], " | Weight: ").concat(product === null || product === void 0 ? void 0 : product.info["weight"]));
+        }
+        else if (product.type == "soft drink") {
+            console.log("Name: ".concat(product === null || product === void 0 ? void 0 : product.info["name"], " | Volume: ").concat(product === null || product === void 0 ? void 0 : product.info["volume"]));
+        }
+    });
+    menuDisplay();
+}
+//? и функция для выхода
 function exitApp() {
     console.log("Saving products to file...");
     fs.writeFileSync("products.json", JSON.stringify(products));

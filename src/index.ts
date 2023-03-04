@@ -53,14 +53,14 @@ rl.on("line", (input: string) => {
 		case "1":
 			addProduct();
 			break;
-		// case "2":
-		// 	showList();
-		// 	break;
+		case "2":
+			showList();
+			break;
 		case "3":
 			exitApp();
 			break;
 		default:
-			console.log("Invalid input. Please try again.");
+			console.log(`Введена неверная команда: ${input}`);
 	}
 });
 
@@ -86,7 +86,7 @@ function addProduct() {
 						};
 						productAdded = true;
 						products.push(product);
-						console.log(product);
+						// console.log(product);
 						if (productAdded) {
 							productAdded = false;
 							menuDisplay();
@@ -108,7 +108,7 @@ function addProduct() {
 						};
 						productAdded = true;
 						products.push(product);
-						console.log(product);
+						// console.log(product);
 						if (productAdded) {
 							productAdded = false;
 							menuDisplay();
@@ -123,18 +123,24 @@ function addProduct() {
 	);
 }
 
-// define the showList function
-// function showList() {
-// 	console.log("Products in bucket:");
-// 	products.forEach((product: Product) => {
-// 		console.log(`Name: ${product.name} | Price: ${product.price}`);
-// 	});
-// 	console.log("1. Add product");
-// 	console.log("2. View products");
-// 	console.log("3. Exit");
-// }
+//? функция showList для отображеня списка
+function showList() {
+	console.log("Products in bucket:");
+	products.forEach((product: Product) => {
+		if (product.type == "ice cream") {
+			console.log(
+				`Name: ${product?.info["name"]} | Weight: ${product?.info["weight"]}`
+			);
+		} else if (product.type == "soft drink") {
+			console.log(
+				`Name: ${product?.info["name"]} | Volume: ${product?.info["volume"]}`
+			);
+		}
+	});
+	menuDisplay();
+}
 
-// define the exitApp function
+//? и функция для выхода
 function exitApp() {
 	console.log("Saving products to file...");
 	fs.writeFileSync("products.json", JSON.stringify(products));
