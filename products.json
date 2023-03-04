@@ -1,1 +1,4 @@
-[{"type":"ice cream","info":{"name":"happy somethink","weight":"100"}}]
+[
+	{ "type": "ice cream", "info": { "name": "happy milk", "weight": "120" } },
+	{ "type": "soft drink", "info": { "name": "soda", "volume": "1" } }
+]
